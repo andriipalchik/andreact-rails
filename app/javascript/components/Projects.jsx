@@ -31,6 +31,7 @@ const Projects = () => {
           id={item.id}
           name={item.attributes.name}
           item={item}
+          deleteItem={deleteItem}
         />
       ))}
 

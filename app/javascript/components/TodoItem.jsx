@@ -43,10 +43,10 @@ const ColorButton = withStyles((theme) => ({
 }))(Button)
 
 export default function TodoItem(props) {
-  const { name, status, deadline, priority } = props.attributes
-
+  function handleDelete() {
+    props.deleteItem(props.item)
+  }
   const classes = useStyles()
-
   return (
     <Grid container spacing={0}>
       <Grid item xs={12}>
@@ -59,9 +59,9 @@ export default function TodoItem(props) {
             justify="space-between"
             alignItems="center"
           >
-            <CheckBox status={status} id={props.id} />
-            <Deadline deadline={deadline} id={props.id} />
-            <Priority priority={priority} id={props.id} />
+            <CheckBox status={props.status} id={props.id} />
+            <Deadline deadline={props.deadline} id={props.id} />
+            <Priority priority={props.priority} id={props.id} />
           </Grid>
           <Grid
             item
@@ -72,7 +72,7 @@ export default function TodoItem(props) {
             alignItems="flex-end"
           >
             <Typography variant="h6" className={classes.heading} noWrap={true}>
-              {name}
+              {props.name}
             </Typography>
             <div>
               <ColorButton
@@ -91,8 +91,8 @@ export default function TodoItem(props) {
                 value="start"
                 size="small"
                 startIcon={<DeleteIcon />}
+                onClick={handleDelete}
               >
-                {/* onClick={handleDelete} */}
                 Delete
               </Button>
             </div>

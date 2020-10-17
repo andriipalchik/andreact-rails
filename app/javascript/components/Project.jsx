@@ -23,18 +23,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Project = ({ id, name, item }) => {
-  const [projects, setProjects] = useState(item)
-
-  const handleDelete = () => {
-    axios
-      .delete(`/api/v1/projects/${id}.json`)
-      .then((resp) => {
-        setProjects(resp)
-      })
-      .catch((resp) => console.log(resp))
+const Project = (props) => {
+  function handleDelete() {
+    props.deleteProject(props.item)
   }
-
   const classes = useStyles()
   return (
     <div className={classes.root}>
@@ -46,12 +38,12 @@ const Project = ({ id, name, item }) => {
               className={classes.menuButton}
               color="inherit"
               aria-label="menu"
-              href={`/api/v1/projects/new`}
+              href={`/api/v1/tasks/new`}
             >
               <EventAvailableRoundedIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              {name}
+              {props.name}
             </Typography>
             <Grid
               item
@@ -66,7 +58,7 @@ const Project = ({ id, name, item }) => {
                 color="inherit"
                 value="end"
                 size="small"
-                href={`/api/v1/projects/${id}/edit`}
+                href={`/api/v1/projects/${props.id}/edit`}
               >
                 <EditIcon />
               </IconButton>

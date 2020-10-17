@@ -67,7 +67,6 @@ const AddButton = () => {
         variant="contained"
         onClick={handleSubmit}
         startIcon={<AddIcon />}
-        href={"/pages/index"}
       >
         Add TODO List
       </Button>
@@ -75,23 +74,25 @@ const AddButton = () => {
   )
 
   return (
-    <Box mx={46}>
-      <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-        <Grid
-          item
-          xs={12}
-          container
-          direction="row"
-          justify="space-evenly"
-          alignItems="center"
-          spacing={2}
-        >
-          {state ? text : null}
+    <div className="AddButton">
+      <Box mx={46}>
+        <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+          <Grid
+            item
+            xs={12}
+            container
+            direction="row"
+            justify="space-evenly"
+            alignItems="center"
+            spacing={2}
+          >
+            {state ? text : null}
 
-          {state ? button2 : button1}
-        </Grid>
-      </form>
-    </Box>
+            {state ? button2 : button1}
+          </Grid>
+        </form>
+      </Box>
+    </div>
   )
 }
 

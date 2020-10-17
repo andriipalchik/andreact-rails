@@ -8,7 +8,7 @@ const UpdatePage = () => {
       value="end"
       color="primary"
       variant="contained"
-      href="http://localhost:3000/pages/index"
+      href="/pages/index"
       style={{ margin: 8 }}
       startIcon={<PlaylistAddCheckIcon />}
     >

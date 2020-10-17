@@ -1,13 +1,11 @@
 import React from "react"
-import Tasks from "./Tasks"
-import Projects from "./Projects"
+import TodoList from "./TodoList"
 import Container from "@material-ui/core/Container"
 
 const App = () => {
   return (
     <Container maxWidth="md">
-      <Projects />
-      <Tasks />
+      <TodoList />
     </Container>
   )
 }
