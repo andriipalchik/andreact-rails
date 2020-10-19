@@ -26,7 +26,7 @@ Technical requirements
 
 ★ It should have a client side and server side validation ✔ (Server side and some client side)
 
-★ It should look like on screens (see attached file 'rg_test_task_grid.png'). ✔ (General resemblance only)
+★ It should look like on screens (see attached file 'rg_test_task_grid.png'). ✔ (General resemblance with MaterialUI)
 
 ★ It should work like one page WEB application and should use AJAX technology, load and submit data without reloading a page. ✔ (+-SPA, reload only for adding something)
 
