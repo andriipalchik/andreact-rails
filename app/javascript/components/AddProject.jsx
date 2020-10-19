@@ -6,7 +6,7 @@ import Grid from "@material-ui/core/Grid"
 import Box from "@material-ui/core/Box"
 import axios from "axios"
 
-const AddButton = () => {
+const AddProject = (props) => {
   const [input, setInput] = useState("")
   const [state, setState] = useState(false)
 
@@ -24,6 +24,7 @@ const AddButton = () => {
     axios
       .post("/api/v1/projects.json", { name: input })
       .then((resp) => {
+        props.updateTodoProject(resp.data)
         console.log(resp.data)
       })
       .catch((error) => console.log(error))
@@ -96,4 +97,4 @@ const AddButton = () => {
   )
 }
 
-export default AddButton
+export default AddProject

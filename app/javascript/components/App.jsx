@@ -4,9 +4,11 @@ import Container from "@material-ui/core/Container"
 
 const App = () => {
   return (
-    <Container maxWidth="md">
-      <TodoList />
-    </Container>
+    <div className="App">
+      <Container maxWidth="md">
+        <TodoList />
+      </Container>
+    </div>
   )
 }
 

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import Grid from "@material-ui/core/Grid"
 import Paper from "@material-ui/core/Paper"
 import { makeStyles, withStyles } from "@material-ui/core/styles"
@@ -7,6 +7,7 @@ import DeleteIcon from "@material-ui/icons/Delete"
 import EditIcon from "@material-ui/icons/Edit"
 import { Typography } from "@material-ui/core"
 import { cyan } from "@material-ui/core/colors"
+import UpdateTask from "./UpdateTask"
 import Deadline from "./Deadline"
 import CheckBox from "./CheckBox"
 import Priority from "./Priority"
@@ -17,12 +18,8 @@ const useStyles = makeStyles({
     height: "auto",
     margin: "0.5em",
   },
-  divider: {
-    width: "100%",
-    margin: "0.25em",
-  },
   paper: {
-    margin: "0.5em",
+    margin: "0.75em",
     padding: "0.75em",
     textAlign: "justify",
   },
@@ -42,15 +39,35 @@ const ColorButton = withStyles((theme) => ({
   },
 }))(Button)
 
-export default function TodoItem(props) {
+export default function TodoItem({
+  id,
+  name,
+  item,
+  status,
+  deadline,
+  priority,
+  deleteItem,
+  project_id,
+  projects_id,
+}) {
+  const [taskState, setTaskState] = useState(false)
   function handleDelete() {
-    props.deleteItem(props.item)
+    deleteItem(item)
   }
+
+  const handleUpdateTask = () => {
+    setTaskState(!taskState)
+  }
+
+  if (project_id != projects_id) {
+    return null
+  }
+
   const classes = useStyles()
   return (
     <Grid container spacing={0}>
       <Grid item xs={12}>
-        <Paper elevation={5} className={classes.paper}>
+        <Paper elevation={3} className={classes.paper}>
           <Grid
             item
             xs={12}
@@ -59,9 +76,9 @@ export default function TodoItem(props) {
             justify="space-between"
             alignItems="center"
           >
-            <CheckBox status={props.status} id={props.id} />
-            <Deadline deadline={props.deadline} id={props.id} />
-            <Priority priority={props.priority} id={props.id} />
+            <CheckBox status={status} id={id} />
+            <Deadline deadline={deadline} id={id} />
+            <Priority priority={priority} id={id} />
           </Grid>
           <Grid
             item
@@ -71,17 +88,35 @@ export default function TodoItem(props) {
             justify="space-between"
             alignItems="flex-end"
           >
-            <Typography variant="h6" className={classes.heading} noWrap={true}>
-              {props.name}
-            </Typography>
+            <Grid
+              item
+              xs={9}
+              container
+              direction="row"
+              justify="space-between"
+              alignItems="baseline"
+            >
+              {!taskState ? (
+                <Typography
+                  variant="h6"
+                  className={classes.heading}
+                  noWrap={true}
+                >
+                  {name}
+                </Typography>
+              ) : (
+                <UpdateTask state={taskState} id={id} />
+              )}
+            </Grid>
+
             <div>
               <ColorButton
                 variant="contained"
                 color="primary"
-                value="end"
+                value="start"
                 size="small"
                 startIcon={<EditIcon />}
-                href={`/api/v1/tasks/${props.id}/edit`}
+                onClick={handleUpdateTask}
               >
                 Edit
               </ColorButton>

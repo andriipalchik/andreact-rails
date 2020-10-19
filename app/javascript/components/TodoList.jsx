@@ -1,16 +1,12 @@
 import React, { Component } from "react"
-import Grid from "@material-ui/core/Grid"
 import UpdatePage from "./UpdatePage"
-import AddButton from "./AddButton"
-import TodoItem from "./TodoItem"
-import TodoForm from "./TodoForm"
+import AddProject from "./AddProject"
 import Project from "./Project"
 import axios from "axios"
 
 class TodoList extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
       projects: [],
       items: [],
@@ -44,10 +40,10 @@ class TodoList extends Component {
   }
 
   updateTodoProject(project) {
-    let _projects = this.state.items
+    let _projects = this.state.projects
     _projects.unshift(project)
     this.setState({
-      items: _projects,
+      projects: _projects,
     })
   }
 
@@ -78,6 +74,7 @@ class TodoList extends Component {
     fetch(deleteURL, {
       method: "DELETE",
     }).then(() => {
+      //or .filter(item != passed_in_item)
       let _items = this.state.items
       let index = _items.indexOf(item)
       _items.splice(index, 1)
@@ -94,32 +91,16 @@ class TodoList extends Component {
           <Project
             key={i.id}
             id={i.id}
-            name={i.attributes.name}
             item={i}
+            items={this.state.items}
+            name={i.attributes.name}
             deleteProject={this.deleteProject}
+            updateTodoList={this.updateTodoList}
+            deleteItem={this.deleteItem}
           />
         ))}
-        <AddButton />
+        <AddProject updateTodoProject={this.updateTodoProject} />
         <UpdatePage />
-        <Grid container spacing={3}>
-          {/* <Grid item xs={12}>
-            <TodoForm updateTodoList={this.updateTodoList} />
-          </Grid> */}
-          <Grid item xs={12} id="todo_list">
-            {this.state.items.map((item) => (
-              <TodoItem
-                item={item}
-                id={item.id}
-                key={item.id}
-                name={item.attributes.name}
-                status={item.attributes.status}
-                deadline={item.attributes.deadline}
-                priority={item.attributes.priority}
-                deleteItem={this.deleteItem}
-              />
-            ))}
-          </Grid>
-        </Grid>
       </div>
     )
   }
