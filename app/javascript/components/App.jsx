@@ -1,5 +1,6 @@
 import React from "react"
 import TodoList from "./TodoList"
+import UpdatePage from "./UpdatePage"
 import Container from "@material-ui/core/Container"
 
 const App = () => {
@@ -8,6 +9,7 @@ const App = () => {
       <Container maxWidth="md">
         <TodoList />
       </Container>
+      <UpdatePage />
     </div>
   )
 }

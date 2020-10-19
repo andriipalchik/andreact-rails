@@ -1,19 +1,28 @@
 import React from "react"
-import Button from "@material-ui/core/Button"
-import PlaylistAddCheckIcon from "@material-ui/icons/PlaylistAddCheck"
+import Fab from "@material-ui/core/Fab"
+import UpdateIcon from "@material-ui/icons/Update"
+import { makeStyles } from "@material-ui/core/styles"
+
+const useStyles = makeStyles((theme) => ({
+  fab: {
+    position: "sticky",
+    bottom: theme.spacing(40),
+    left: theme.spacing(155),
+  },
+}))
 
 const UpdatePage = () => {
+  const classes = useStyles()
   return (
-    <Button
-      value="end"
-      color="primary"
-      variant="contained"
+    <Fab
+      color="secondary"
+      aria-label="update"
+      className={classes.fab}
       href="/pages/index"
-      style={{ margin: 8 }}
-      startIcon={<PlaylistAddCheckIcon />}
+      // style={{ marginLeft: 800 }}
     >
-      Update Page
-    </Button>
+      <UpdateIcon />
+    </Fab>
   )
 }
 

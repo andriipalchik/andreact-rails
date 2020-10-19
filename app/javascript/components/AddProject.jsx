@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import TextField from "@material-ui/core/TextField"
 import Button from "@material-ui/core/Button"
 import AddIcon from "@material-ui/icons/Add"
@@ -24,11 +24,9 @@ const AddProject = (props) => {
     axios
       .post("/api/v1/projects.json", { name: input })
       .then((resp) => {
-        props.updateTodoProject(resp.data)
         console.log(resp.data)
       })
       .catch((error) => console.log(error))
-
     setState(!state)
   }
 

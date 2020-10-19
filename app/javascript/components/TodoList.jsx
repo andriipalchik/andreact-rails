@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import UpdatePage from "./UpdatePage"
 import AddProject from "./AddProject"
 import Project from "./Project"
 import axios from "axios"
@@ -11,7 +10,6 @@ class TodoList extends Component {
       projects: [],
       items: [],
     }
-
     this.updateTodoProject = this.updateTodoProject.bind(this)
     this.deleteProject = this.deleteProject.bind(this)
     this.updateTodoList = this.updateTodoList.bind(this)
@@ -99,8 +97,8 @@ class TodoList extends Component {
             deleteItem={this.deleteItem}
           />
         ))}
+       
         <AddProject updateTodoProject={this.updateTodoProject} />
-        <UpdatePage />
       </div>
     )
   }
